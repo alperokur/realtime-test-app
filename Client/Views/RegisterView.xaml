@@ -1,0 +1,28 @@
+﻿<UserControl
+    x:Class="Winux.Views.RegisterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{StaticResource RegisterViewModel}"
+    Loading="UserControl_Loading">
+
+    <ScrollViewer>
+        <Grid Style="{StaticResource DefaultGrid}">
+            <StackPanel Style="{StaticResource DefaultStackPanel}">
+                <PersonPicture Style="{StaticResource DefaultPersonPicture}"/>
+                <TextBox x:Name="Username" PlaceholderText="{x:Bind viewModel.Username, Mode=OneWay}" Style="{StaticResource DefaultTextBox}"/>
+                <PasswordBox x:Name="Password" PlaceholderText="{x:Bind viewModel.Password, Mode=OneWay}" Style="{StaticResource DefaultPasswordBox}"/>
+                <TextBox x:Name="FirstName" PlaceholderText="{x:Bind viewModel.FirstName, Mode=OneWay}" Style="{StaticResource DefaultTextBox}"/>
+                <TextBox x:Name="LastName" PlaceholderText="{x:Bind viewModel.LastName, Mode=OneWay}" Style="{StaticResource DefaultTextBox}"/>
+                <TextBox x:Name="Email" PlaceholderText="{x:Bind viewModel.Email, Mode=OneWay}" Style="{StaticResource DefaultTextBox}"/>
+                <TextBox x:Name="Phone" PlaceholderText="{x:Bind viewModel.Phone, Mode=OneWay}" Style="{StaticResource DefaultTextBox}"/>
+                <Button x:Name="Register" Content="{x:Bind viewModel.Register, Mode=OneWay}" Style="{StaticResource DefaultButton}" Click="Register_Click"/>
+                <Button x:Name="HaveAccount" Style="{StaticResource TransparentButton}" Click="HaveAccount_Click">
+                    <TextBlock Text="{x:Bind viewModel.HaveAccount, Mode=OneWay}" Style="{StaticResource ButtonTextBlock}"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

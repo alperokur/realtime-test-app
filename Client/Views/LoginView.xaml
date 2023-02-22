@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="Winux.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{StaticResource LoginViewModel}"
+    Loading="UserControl_Loading">
+
+    <ScrollViewer>
+        <Grid Style="{StaticResource DefaultGrid}">
+            <StackPanel Style="{StaticResource DefaultStackPanel}">
+                <PersonPicture Style="{StaticResource DefaultPersonPicture}"/>
+                <TextBox x:Name="Username" PlaceholderText="{x:Bind viewModel.Username, Mode=OneWay}" Style="{StaticResource DefaultTextBox}"/>
+                <PasswordBox x:Name="Password" PlaceholderText="{x:Bind viewModel.Password, Mode=OneWay}" Style="{StaticResource DefaultPasswordBox}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="RememberMe" Content="{x:Bind viewModel.RememberMe, Mode=OneWay}" Style="{StaticResource DefaultCheckBox}" />
+                </Grid>
+                <Button x:Name="Login" Content="{x:Bind viewModel.Login, Mode=OneWay}" Style="{StaticResource DefaultButton}" Click="Login_Click"/>
+                <Button x:Name="HaventUser" Style="{StaticResource TransparentButton}" Click="HaventAccount_Click">
+                    <TextBlock Text="{x:Bind viewModel.HaventAccount, Mode=OneWay}" Style="{StaticResource ButtonTextBlock}"/>
+                </Button>
+                <TextBlock x:Name="Info" Style="{StaticResource ConstWidthTextBlock}" Text="{x:Bind viewModel.Info, Mode=OneWay}" Visibility="Collapsed"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

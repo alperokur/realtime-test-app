@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="Winux.Views.Components.TitleBarView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loading="UserControl_Loading"
+    DataContext="{StaticResource TitleBarViewModel}"
+    d:Height="49">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="CoreTitleBar" Background="{ThemeResource TitleBarColor}" Height="{StaticResource TitleBarHeight}"/>
+        <Grid x:Name="AppTitleBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0"/>
+                <ColumnDefinition/>
+                <ColumnDefinition x:Name="RightPaddingColumn" Width="0"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <CommandBar x:Name="Menu" Grid.Column="1" Background="Transparent" IsTabStop="True" VerticalAlignment="Center">
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton x:Name="Settings" Icon="Setting" Label="{x:Bind viewModel.Settings, Mode=OneWay}"/>
+                        <AppBarButton Icon="World" Label="{x:Bind viewModel.Language, Mode=OneWay}">
+                            <AppBarButton.Flyout>
+                                <MenuFlyout x:Name="Languages">
+                                    <ToggleMenuFlyoutItem x:Name="en" Text="{x:Bind viewModel.English, Mode=OneWay}" Click="Language_Click"/>
+                                    <ToggleMenuFlyoutItem x:Name="tr" Text="{x:Bind viewModel.Turkish, Mode=OneWay}" Click="Language_Click"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>
+                        <AppBarButton x:Name="About" Icon="Help" Label="{x:Bind viewModel.About, Mode=OneWay}" Click="About_Click"/>
+                        <AppBarButton x:Name="Logout" Icon="OtherUser" Label="{x:Bind viewModel.Logout, Mode=OneWay}" Visibility="{x:Bind viewModel.AuthVisibility, Mode=OneWay}" Click="Logout_Click"/>
+                    </CommandBar.SecondaryCommands>
+                </CommandBar>
+            </Grid>
+        </Grid>
+        <Rectangle Grid.Row="1" Fill="{ThemeResource BorderColor}" Height="{StaticResource BorderSize}"/>
+    </Grid>
+</UserControl>
